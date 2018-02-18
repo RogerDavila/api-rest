@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.prueba.apirest.dao.ReciboDAO;
 import com.prueba.apirest.model.Recibo;
 import com.prueba.apirest.repository.ReciboRepository;
 import com.prueba.apirest.service.ReciboService;
@@ -12,12 +13,15 @@ import com.prueba.apirest.service.ReciboService;
 @Service
 public class ReciboServiceImpl implements ReciboService{
 
+//	@Autowired
+//	private ReciboRepository reciboRepository;
+	
 	@Autowired
-	private ReciboRepository reciboRepository;
+	private ReciboDAO reciboDAO;
 	
 	@Override
 	public List<Recibo> obtenerPorNumeroPoliza(int numeroPoliza) {
-		return reciboRepository.findByPolizaNumeroPoliza(numeroPoliza);
+		return reciboDAO.findByPolizaNumeroPoliza(numeroPoliza);
 	}
 
 	@Override
@@ -25,7 +29,7 @@ public class ReciboServiceImpl implements ReciboService{
 		if(numeroRecibo == 0) {
 			return null;
 		}
-		return reciboRepository.findByNumero(numeroRecibo);
+		return reciboDAO.findByNumero(numeroRecibo);
 	}
 
 }

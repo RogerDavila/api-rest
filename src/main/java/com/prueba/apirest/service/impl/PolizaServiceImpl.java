@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.prueba.apirest.dao.PolizaDAO;
 import com.prueba.apirest.model.Poliza;
 import com.prueba.apirest.repository.PolizaRepository;
 import com.prueba.apirest.service.PolizaService;
@@ -12,17 +13,20 @@ import com.prueba.apirest.service.PolizaService;
 @Service
 public class PolizaServiceImpl implements PolizaService{
 
+	/*@Autowired
+	private PolizaRepository polizaRepository;*/
+	
 	@Autowired
-	private PolizaRepository polizaRepository;
+	private PolizaDAO polizaDAO;
 	
 	@Override
 	public List<Poliza> obtenerTodasPolizas(){
-		return polizaRepository.findAll();
+		return polizaDAO.findAll();
 	}
 
 	@Override
 	public Poliza obtenerPolizasPorNumero(int numeroPoliza) {
-		return polizaRepository.findByNumeroPoliza(numeroPoliza);
+		return polizaDAO.findByNumeroPoliza(numeroPoliza);
 	}
 	
 }
